@@ -24,7 +24,7 @@ const routes = {
     build: "src/",
   },
   server: {
-    build: "build/",
+    build: "build",
   },
   img: {
     watch: "src/img/**/*.{svg,img,png,webp}",
@@ -59,7 +59,11 @@ const Pug = () =>
   Gulp.src(routes.pug.src).pipe(GulpPug()).pipe(Gulp.dest(routes.pug.dest));
 const WebServer = () =>
   Gulp.src(routes.server.build).pipe(
-    GulpWebserver({ livereload: true, open: true })
+    GulpWebserver({
+      livereload: true,
+      open: true,
+      port: 8000,
+    })
   );
 const Watch = () => {
   Gulp.watch(routes.img.watch, Image);
